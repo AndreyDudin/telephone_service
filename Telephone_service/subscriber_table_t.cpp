@@ -36,7 +36,7 @@ void subscriber_table_t::write_to_file()
 	}
 	f.close();
 }
-subscriber_table_t& subscriber_table_t::read_from_file()
+/*subscriber_table_t& subscriber_table_t::read_from_file()
 {
 	std::ifstream f("service.dat");
 	auto it = table.begin();
@@ -52,7 +52,7 @@ subscriber_table_t& subscriber_table_t::read_from_file()
 		}
 
 	}
-}
+}*/
 
 
 subscriber_table_t::~subscriber_table_t()

@@ -1,6 +1,5 @@
 // Application.cpp : Defines the entry point for the console application.
 //
-
 #include "stdafx.h"
 #include <conio.h>
 #include <iostream>
@@ -90,8 +89,7 @@ int _tmain(int argc, _TCHAR* argv[])
 					telephone_t services;
 					std::cout << "Enter the data: Number, Time, Duraction of connection:" << std::endl;
 					std::cin >> services;
-					service.search(n).add_service(&services);//внутри метода создать копию услуги и передавать её и сдеать телефон статическим
-					
+					service.search(n).add_service(&services);//внутри метода создать копию услуги и передавать её и сдеать телефон статическим				
 				}
 				if (type == "fax")
 				{

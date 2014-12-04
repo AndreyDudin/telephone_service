@@ -70,3 +70,18 @@ std::istream& web_t::get(std::istream& is)
 {
 	return is >> number_ >> time_ >> duraction_of_connection_ >> input_traffic_ >> output_traffic_;
 }
+
+std::string web_t::to_string() const
+{
+	std::ostringstream stream;
+	stream << "Number: " << number_ << " " << "Time: " << time_ << " " << "Duraction of connection: " << duraction_of_connection_ << " " << "Input traffic: " << input_traffic_ << " " << "Output traffic: " << output_traffic_ << std::endl;
+	return stream.str();
+}
+
+std::string web_t::serialize() const
+{
+	std::ostringstream stream;
+	stream << number_ << " "<< time_ << " " << duraction_of_connection_ << " "<< input_traffic_ << " " << output_traffic_ << std::endl;
+	return stream.str();
+}
+

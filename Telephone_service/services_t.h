@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <sstream>
 
 class services_t
 {
@@ -10,12 +11,15 @@ public:
 
 	int get_time();
 	services_t& set_time(int n);
-	virtual services_t* copy() const ;//для остальных услуг
+	virtual services_t* copy() const =0;//для остальных услуг
+
+	virtual std::string to_string() const = 0;
+	virtual std::string serialize() const = 0;
 
 	virtual std::ostream& show(std::ostream& os);//выводим поля, прописать для всех классов
 	virtual std::istream& get(std::istream&);
 
-	friend std::ostream& operator<<(std::ostream& os, services_t& service);
+	friend std::ostream& operator<<(std::ostream& os, services_t const& service);
 	friend std::istream& operator>>(std::istream& is, services_t& service);
 protected:
 	int number_;

@@ -19,7 +19,7 @@ services_t::services_t()
 {
 
 }
-services_t* services_t::copy() const
+/*services_t* services_t::copy() const
 {
 	services_t* service = new services_t();
 	(*service).number_ = number_;
@@ -27,7 +27,7 @@ services_t* services_t::copy() const
 	(*service).duraction_of_connection_ = duraction_of_connection_;
 	return service;
 }
-
+*/
 
 int services_t::get_time()
 {
@@ -48,12 +48,12 @@ std::ostream& services_t::show(std::ostream& os)
 }
 
 
-std::ostream& operator<<(std::ostream& os, services_t& service)
+std::ostream& operator<<(std::ostream& os, services_t const& service)
 {
-	return service.show(os);
+	return  os<<service.to_string();
 }
 
-std::istream& operator>>(std::istream& is, services_t& service)
+std::istream& operator>>(std::istream& is, services_t & service)
 {
 	return service.get(is);
 
