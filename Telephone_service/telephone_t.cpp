@@ -31,7 +31,7 @@ std::string telephone_t::to_string() const
 std::string telephone_t::serialize() const
 {
 	std::ostringstream stream;
-	stream << number_ << " " << time_ << " " << duraction_of_connection_;
+	stream <<"telephone"<< " " << number_ << " " << time_ << " " << duraction_of_connection_;
 	return stream.str();
 }
 

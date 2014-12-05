@@ -62,7 +62,7 @@ std::string fax_t::to_string() const
 std::string fax_t::serialize() const
 {
 	std::ostringstream stream;
-	stream << number_ << " " << time_ << " " << duraction_of_connection_ << " " << amount_of_information_;
+	stream <<"fax"<<" "<< number_ << " " << time_ << " " << duraction_of_connection_ << " " << amount_of_information_;
 	return stream.str();
 }
 

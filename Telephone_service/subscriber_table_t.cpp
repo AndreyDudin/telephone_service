@@ -24,46 +24,29 @@ subscriber_table_t& subscriber_table_t::add_element(subscriber_t& sub)
 void subscriber_table_t::write_to_file()
 {
 	std::ofstream f("service.dat", std::ios_base::ate | std::ios_base::app);
-	f << table.size();
+	f << table.size()<<" ";
 	for (auto it = table.begin(); it != table.end(); ++it)
 	{
-		if (corporate_client_t* corporate_client = dynamic_cast<corporate_client_t*>(&it->second))
-		{
-			f << "Corporate ";
-		}
-		else
-		{
-			f << "Physical ";
-		}
-
-		f << it->second;
-		f << (it->second).get_amount_of_sessions();
-
-		for (int i = 0; i < it->second.get_amount_of_sessions(); i++)
-		{
-			f << *(it->second.get_service(i));
-		}
-
+		f<< it->second.serialize();
 	}
 	f.close();
 }
-/*subscriber_table_t& subscriber_table_t::read_from_file()
+subscriber_table_t& subscriber_table_t::read_from_file()
 {
 	std::ifstream f("service.dat");
-	auto it = table.begin();
 	int n;
-	f >>  n;
-	for (int i = 0; i < n; i++)
+	subscriber_t sub;
+	f >> n;
+	for (int i = 0; i < n;i++)
 	{
-		f >> it->second;
-	//	it->first = it->second.get_number();
-		for (int j = 0; j < it->second.get_amount_of_sessions(); j++)
-		{
-			
-		}
+		
+		f >> sub;
+		auto it = table.insert(std::make_pair(sub.get_number(), sub));
 
 	}
-}*/
+	f.close();
+	return *this;
+}
 
 
 subscriber_table_t::~subscriber_table_t()

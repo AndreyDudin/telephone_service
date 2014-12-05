@@ -40,7 +40,7 @@ std::string corporate_client_t::to_string() const
 std::string corporate_client_t::serialize() const
 {
 	std::ostringstream stream;
-	stream << name_ << " " << address_ << " " << bank_account_ << " "<< company_name_;
+	stream <<"corporate"<<" "<< name_ << " " << address_ << " " << bank_account_ << " "<< company_name_;
 	return stream.str();
 }
 

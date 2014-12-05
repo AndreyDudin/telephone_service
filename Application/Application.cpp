@@ -169,6 +169,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		if (c == '0')
 		{
+			service.write_to_file();
 			break;
 		}
 	}

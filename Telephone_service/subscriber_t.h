@@ -22,8 +22,8 @@ public:
 
 	virtual ~subscriber_t();//
 	subscriber_t& add_service(services_t *service);
-	client_type get_type(client_t client);
-	services_t* get_service(int n);
+	client_type get_type() const;
+	services_t* get_service(int n) const;
 	int get_amount_of_sessions();
 	void show_services();
 	int get_number();

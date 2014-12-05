@@ -48,7 +48,7 @@ std::string client_t::to_string() const
 std::string client_t::serialize() const
 {
 	std::ostringstream stream;
-	stream << name_ << " " << address_ << " " << bank_account_;
+	stream<<"client"<<" " << name_ << " " << address_ << " " << bank_account_;
 	return stream.str();
 }
 
