@@ -29,3 +29,18 @@ std::istream& corporate_client_t::get(std::istream& is)
 {
 	return is >> name_ >> address_ >> bank_account_ >>company_name_;
 }
+
+std::string corporate_client_t::to_string() const
+{
+	std::ostringstream stream;
+	stream << "Name: " << name_ << " " << "Adress: " << address_ << " " << "Bank account: " << bank_account_<<" "<<"Company name: "<<company_name_;
+	return stream.str();
+}
+
+std::string corporate_client_t::serialize() const
+{
+	std::ostringstream stream;
+	stream << name_ << " " << address_ << " " << bank_account_ << " "<< company_name_;
+	return stream.str();
+}
+

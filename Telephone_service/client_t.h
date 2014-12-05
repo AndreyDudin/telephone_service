@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <sstream>
 
 class client_t
 {
@@ -14,7 +15,10 @@ public:
 	virtual std::ostream& show_client(std::ostream& os);
 	virtual std::istream& get(std::istream&);
 
-	friend std::ostream& operator<<(std::ostream& os, client_t& client);
+	virtual std::string to_string() const;
+	virtual std::string serialize() const;
+
+	friend std::ostream& operator<<(std::ostream& os, client_t const& client);
 	friend std::istream& operator>>(std::istream& is, client_t& client);
 protected:
 	std::string name_;

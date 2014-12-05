@@ -27,7 +27,18 @@ void subscriber_table_t::write_to_file()
 	f << table.size();
 	for (auto it = table.begin(); it != table.end(); ++it)
 	{
+		if (corporate_client_t* corporate_client = dynamic_cast<corporate_client_t*>(&it->second))
+		{
+			f << "Corporate ";
+		}
+		else
+		{
+			f << "Physical ";
+		}
+
 		f << it->second;
+		f << (it->second).get_amount_of_sessions();
+
 		for (int i = 0; i < it->second.get_amount_of_sessions(); i++)
 		{
 			f << *(it->second.get_service(i));

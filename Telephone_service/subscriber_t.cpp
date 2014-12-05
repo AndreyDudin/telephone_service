@@ -73,7 +73,7 @@ client_type subscriber_t::get_type(client_t client)
 	}
 }
 
-services_t* subscriber_t::get_service(int n)
+services_t* subscriber_t::get_service(int n) 
 {
 	return services_[n];
 }
@@ -81,19 +81,12 @@ int subscriber_t::get_number()
 {
 	return number_;
 }
-std::ostream& operator<<(std::ostream& os, const subscriber_t& sub)
+std::ostream& operator<<(std::ostream& os, const subscriber_t const& sub)
 {
-	std::cout << "Number:" << sub.number_ << "Amount:"<<sub.amount_of_sessions_<< *sub.client_ << std::endl;
-	return os;
+	return os << sub.to_string();
 }
 
-std::istream& operator>>(std::istream& is, subscriber_t& sub)
-{	
-	std::string trash;
-	is >> trash;
-	is>>sub.number_>>sub.amount_of_sessions_ >> *sub.client_;
-	return is;
-}
+
 int subscriber_t::get_amount_of_sessions()
 {
 	return amount_of_sessions_;
@@ -143,3 +136,26 @@ int subscriber_t::total_MB()
 
 
 
+std::string subscriber_t::to_string() const
+{
+	std::ostringstream stream;
+	stream << "Number: " <<number_<<" "<< "Amount: " <<amount_of_sessions_<<" " << *client_;
+	return stream.str();
+}
+std::string subscriber_t::serialize() const
+{
+	std::ostringstream stream;
+	stream << number_ << " " << amount_of_sessions_ << " " << client_->serialize();
+	for (int i = 0; i < amount_of_sessions_;i++)
+	{
+		stream << (get_service(i)->serialize());
+	}
+
+	return stream.str();
+}
+
+std::istream& operator>>(std::istream& is, subscriber_t& sub)
+{
+	is >> sub.number_ >> sub.amount_of_sessions_ >> *sub.client_;
+	return is;
+}

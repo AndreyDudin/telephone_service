@@ -56,13 +56,13 @@ std::istream& fax_t::get(std::istream& is)
 std::string fax_t::to_string() const
 {
 	std::ostringstream stream;
-	stream << "Number:" << number_ << " " << "Time:" << time_ << " " << "Duraction of connection: " << duraction_of_connection_ << " " << "Amount of information: " << amount_of_information_ << std::endl;
+	stream << "Number:" << number_ << " " << "Time:" << time_ << " " << "Duraction of connection: " << duraction_of_connection_ << " " << "Amount of information: " << amount_of_information_;
 	return stream.str();
 }
 std::string fax_t::serialize() const
 {
 	std::ostringstream stream;
-	stream << number_ << " "<< time_ << " "<< duraction_of_connection_ << " "<< amount_of_information_ << std::endl;
+	stream << number_ << " " << time_ << " " << duraction_of_connection_ << " " << amount_of_information_;
 	return stream.str();
 }
 

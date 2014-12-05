@@ -11,6 +11,9 @@ public:
 //	friend std::ostream& operator<<(std::ostream& os, client_t& client);
 	//friend std::istream& operator>>(std::istream& is, corporate_client_t& client);
 	std::istream& get(std::istream&);
+
+	 std::string to_string() const;
+	 std::string serialize() const;
 private:
 	std::string company_name_;
 };

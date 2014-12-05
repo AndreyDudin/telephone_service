@@ -35,8 +35,11 @@ public:
 	subscriber_t& set_web_input(int, int);
 	subscriber_t& set_web_output(int, int);
 
-	friend std::ostream& operator<<(std::ostream& os, const subscriber_t& sub);
+	friend std::ostream& operator<<(std::ostream& os,subscriber_t const& sub);
 	friend std::istream& operator>>(std::istream& is, subscriber_t& sub);
+
+	std::string to_string() const;
+	std::string serialize() const;
 
 private:
 	int number_;
