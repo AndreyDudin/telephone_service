@@ -176,6 +176,7 @@ std::istream& operator>>(std::istream& is, subscriber_t& sub)
 	for (int i = 0; i < n;i++)
 	{
 		std::string type;
+		is >> type;
 		if (type == "telephone")
 		{
 			telephone_t services;

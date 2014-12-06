@@ -17,12 +17,25 @@ void telephone_service_t::show_table()
 void telephone_service_t::write_to_file()
 {
 	std::ofstream f("service.dat");
-	f << name_;
-	f << payment_;
-	f << minute_rate_;
-	f << MB_rate_;
+	f << name_<<" ";
+	f << payment_<<" ";
+	f << minute_rate_<<" ";
+	f << MB_rate_<<" ";
+	f.close();
 	table_.write_to_file();
 
+}
+
+telephone_service_t& telephone_service_t::read_from_file()
+{
+	std::ifstream f("service.dat");
+	f >> name_;
+	f >> payment_;
+	f >> minute_rate_;
+	f >> MB_rate_;
+	f.close();
+	table_.read_from_file();
+	return *this;
 }
 
 

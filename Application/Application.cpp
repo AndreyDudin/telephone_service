@@ -11,21 +11,36 @@ const char* MENU = "1.Add new abonent\n2.Show abonents table\n3.Add service\n4.S
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	std::string name;
-	int p;
-	int m;
-	int mb;
-	std::cout << "Enter the service's name" << std::endl;
-	std::cin >> name;
-	std::cout << "Enter the service's month payment" << std::endl;
-	std::cin >> p;
-	std::cout << "Enter the service's minute rate" << std::endl;
-	std::cin >> m;
-	std::cout << "Enter the service's MB rate" << std::endl;
-	std::cin >> mb;
-	char c;	
-	telephone_service_t service(name,p,m,mb);
+	std::cout << "New table? Y/N" << std::endl;
+	char choise;
+	std::cin>>choise;
+	telephone_service_t* service;
+	if (choise=='Y')
+	{
+		std::string name;
+		int p;
+		int m;
+		int mb;
+		std::cout << "Enter the service's name" << std::endl;
+		std::cin >> name;
+		std::cout << "Enter the service's month payment" << std::endl;
+		std::cin >> p;
+		std::cout << "Enter the service's minute rate" << std::endl;
+		std::cin >> m;
+		std::cout << "Enter the service's MB rate" << std::endl;
+		std::cin >> mb;
+		service = new telephone_service_t(name, p, m, mb);
+	}
+
+	else
+	{
+		service = new telephone_service_t();
+		service->read_from_file();
+		
+	}
 	subscriber_t* subscriber;
+	char c;
+	
 
 	for (;;)
 	{
@@ -63,12 +78,12 @@ int _tmain(int argc, _TCHAR* argv[])
 				}
 			}
 			subscriber = new subscriber_t(*client, n);
-			service.add(*subscriber);
+			service->add(*subscriber);
 			break;
 		}
 		case '2':
 			std::cout << "Table of abonents:" << std::endl;
-			service.show_table();
+			service->show_table();
 			break;
 
 		case'3':
@@ -89,7 +104,7 @@ int _tmain(int argc, _TCHAR* argv[])
 					telephone_t services;
 					std::cout << "Enter the data: Number, Time, Duraction of connection:" << std::endl;
 					std::cin >> services;
-					service.search(n).add_service(&services);//внутри метода создать копию услуги и передавать её и сдеать телефон статическим				
+					service->search(n).add_service(&services);//внутри метода создать копию услуги и передавать её и сдеать телефон статическим				
 				}
 				if (type == "fax")
 				{
@@ -97,7 +112,7 @@ int _tmain(int argc, _TCHAR* argv[])
 					fax_t services;
 					std::cout << "Enter the data: Number, Time, Duraction of connection, Amount of information:" << std::endl;
 					std::cin >> services;
-					service.search(n).add_service(&services);
+					service->search(n).add_service(&services);
 				}
 				if (type == "web")
 				{
@@ -105,7 +120,7 @@ int _tmain(int argc, _TCHAR* argv[])
 					web_t services;
 					std::cout << "Enter the data: Number, Time, Duraction of connection, Input traffic,Output traffic:" << std::endl;
 					std::cin >> services;
-					service.search(n).add_service(&services);
+					service->search(n).add_service(&services);
 				}
 			} while (type != "telephone" && type != "fax" && type != "web");	
 			break;
@@ -115,7 +130,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			int n;
 			std::cout << "Enter the number of abonent:" << std::endl;
 			std::cin >> n;
-			service.search(n).show_services();
+			service->search(n).show_services();
 			break;
 		}
 		case'5':
@@ -123,17 +138,17 @@ int _tmain(int argc, _TCHAR* argv[])
 			int n;
 			std::cout << "Enter the number of abonent:" << std::endl;
 			std::cin >> n;
-			std::cout <<"Total information: "<< service.search(n).total_output_information() << std::endl;
+			std::cout <<"Total information: "<< service->search(n).total_output_information() << std::endl;
 			break;
 		}
 		case'6':
 		{
-			std::cout << "Total service time:" << service.service_time() << std::endl;
+			std::cout << "Total service time:" << service->service_time() << std::endl;
 			break;
 		}
 		case'7':
 		{
-			std::cout << "Total payment:" << service.total_payment() << std::endl;
+			std::cout << "Total payment:" << service->total_payment() << std::endl;
 			break;
 		}
 		case'8':
@@ -144,7 +159,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			int data;
 			std::cout << "Enter the number of abonent:" << std::endl;
 			std::cin >> n;
-			service.search(n).show_services();
+			service->search(n).show_services();
 			std::cout << "Choose service" << std::endl;
 			std::cin >> pos;
 			std::cout << "Which data you want to set?" << std::endl;
@@ -154,22 +169,22 @@ int _tmain(int argc, _TCHAR* argv[])
 
 			if (type == "Input")
 			{
-				service.search(n).set_web_input(pos, data);
+				service->search(n).set_web_input(pos, data);
 			}
 			if (type == "Output")
 			{
-				service.search(n).set_web_output(pos, data);
+				service->search(n).set_web_output(pos, data);
 			}
 			if (type == "Amount")
 			{
-				service.search(n).set_fax_amount(pos, data);
+				service->search(n).set_fax_amount(pos, data);
 			}
 			break;
 		}
 		}
 		if (c == '0')
 		{
-			service.write_to_file();
+			service->write_to_file();
 			break;
 		}
 	}

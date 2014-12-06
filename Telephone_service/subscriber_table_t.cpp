@@ -27,19 +27,25 @@ void subscriber_table_t::write_to_file()
 	f << table.size()<<" ";
 	for (auto it = table.begin(); it != table.end(); ++it)
 	{
-		f<< it->second.serialize();
+		f<< it->second.serialize()<<std::endl;
 	}
 	f.close();
 }
 subscriber_table_t& subscriber_table_t::read_from_file()
 {
+	std::string trash;
+
 	std::ifstream f("service.dat");
 	int n;
-	subscriber_t sub;
+	
+	f >> trash;
+	f >> trash;
+	f >> trash;
+	f >> trash;
 	f >> n;
 	for (int i = 0; i < n;i++)
 	{
-		
+		subscriber_t sub;
 		f >> sub;
 		auto it = table.insert(std::make_pair(sub.get_number(), sub));
 
