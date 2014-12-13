@@ -83,6 +83,7 @@
     <ClInclude Include="client_t.h" />
     <ClInclude Include="corporate_client_t.h" />
     <ClInclude Include="fax_t.h" />
+    <ClInclude Include="MyMap.h" />
     <ClInclude Include="services_t.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="subscriber_t.h" />
@@ -97,6 +98,7 @@
     <ClCompile Include="client_t.cpp" />
     <ClCompile Include="corporate_client_t.cpp" />
     <ClCompile Include="fax_t.cpp" />
+    <ClCompile Include="MyMap.cpp" />
     <ClCompile Include="services_t.cpp" />
     <ClCompile Include="subscriber_t.cpp" />
     <ClCompile Include="subscriber_table_t.cpp" />

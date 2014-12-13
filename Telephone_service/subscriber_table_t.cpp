@@ -9,15 +9,11 @@ subscriber_table_t& subscriber_table_t::add_element(subscriber_t& sub)
 	//auto it = table.find(sub.get_number());
 	if (table.find(sub.get_number())==table.end())
 	{
-		auto it = table.insert(std::make_pair(sub.get_number(), sub));
-		if (!it.second)
-		{
-			throw std::exception("Error insert");
-		}
+		table.insert(sub.get_number(),sub);
 	}
 	else
 	{
-		table.find(sub.get_number())->second = sub;
+		throw std::exception("Error insert");
 	}
 	return *this;
 }
@@ -27,7 +23,7 @@ void subscriber_table_t::write_to_file()
 	f << table.size()<<" ";
 	for (auto it = table.begin(); it != table.end(); ++it)
 	{
-		f<< it->second.serialize()<<std::endl;
+		f<< (*it).second.serialize()<<std::endl;
 	}
 	f.close();
 }
@@ -47,11 +43,12 @@ subscriber_table_t& subscriber_table_t::read_from_file()
 	{
 		subscriber_t sub;
 		f >> sub;
-		auto it = table.insert(std::make_pair(sub.get_number(), sub));
+		table.insert(sub.get_number(), sub);
 
 	}
 	f.close();
 	return *this;
+	
 }
 
 
@@ -60,18 +57,18 @@ subscriber_table_t::~subscriber_table_t()
 
 }
 
-subscriber_table_t::iterator subscriber_table_t::find(int k)//реализовать констурктор
+subscriber_table_t::Iterator subscriber_table_t::find(int k)//реализовать констурктор
 {
 	auto it = table.find(k);
 	return subscriber_table_tIt(it);
 }
 
-subscriber_table_t::iterator subscriber_table_t::begin()
+subscriber_table_t::Iterator subscriber_table_t::begin()
 {
 	return subscriber_table_tIt(table.begin());
 }
 
-subscriber_table_t::iterator subscriber_table_t::end()
+subscriber_table_t::Iterator subscriber_table_t::end()
 {
 	return subscriber_table_tIt(table.end());
 }
@@ -86,7 +83,7 @@ void subscriber_table_t::show_table()
 }
 subscriber_t& subscriber_table_t::search(int n)
 {
-	return table.find(n)->second;
+	return (*table.find(n)).second;
 	
 }
 

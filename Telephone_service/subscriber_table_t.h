@@ -1,8 +1,8 @@
 #pragma once
-#include <map>
 #include "subscriber_t.h"
 #include "subscriber_table_tIt.h"
 #include <fstream>
+#include "MyMap.h"
 
 //class subsriber_table_tIt;
 
@@ -19,14 +19,14 @@ public:
 	void write_to_file();
 	subscriber_table_t& read_from_file();
 
-	typedef subscriber_table_tIt iterator;
-	iterator begin();
-	iterator end();
-	iterator find(int k);
+	typedef subscriber_table_tIt Iterator;
+	Iterator begin();
+	Iterator end();
+	Iterator find(int k);
 	int table_time();
 	int table_MB();
 
 private:
-	std::map<int, subscriber_t> table;
+	Mymap <int, subscriber_t> table;
 	
 };

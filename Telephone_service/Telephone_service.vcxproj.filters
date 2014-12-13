@@ -54,6 +54,9 @@
     <ClInclude Include="telephone_service_t.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="services_t.cpp">
@@ -84,6 +87,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="telephone_service_t.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -15,7 +15,6 @@ public:
 		minute_rate_(minute_rate),
 		MB_rate_(MB_rate)
 	{};
-
 	telephone_service_t& add(subscriber_t sub);
 	subscriber_t& search(int n);
 	void show_table();

@@ -13,6 +13,7 @@ services_t::services_t(int number, int time, int duraction_of_connection)
 
 services_t::~services_t()
 {
+	
 }
 
 services_t::services_t()
